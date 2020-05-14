@@ -34,8 +34,11 @@ function addStep() {
     return db("schemes")
 }
 
-function update(id, changes) {
+function update(changes, id) {
     return db("schemes").where({id}).update(changes)
+    .then(res => {
+        return findById(id)
+    })
 }
 
 function remove(id) {
